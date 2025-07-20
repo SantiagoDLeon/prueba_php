@@ -21,9 +21,12 @@ try {
     $empleado = new Empleado();
     $id = $empleado->crear($data);
 
-    echo "<h3>✅ Empleado registrado correctamente. ID: $id</h3>";
-    echo '<a href="crear.php">← Volver</a> | <a href="listar.php">Ver lista</a>';
-} catch (Exception $e) {
+    echo '<div class="mensaje-exito">
+        ✅ El empleado fue registrado correctamente.
+      </div>
+      <br>
+      <a href="crear.php">← Volver</a> | <a href="listar.php">Ver lista</a>';
+    } catch (Exception $e) {
     echo "❌ Error al guardar: " . $e->getMessage();
 }
 ?>
