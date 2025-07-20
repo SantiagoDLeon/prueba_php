@@ -18,6 +18,13 @@ class Empleado {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function obtenerPorId($id) {
+    $stmt = $this->conn->prepare("SELECT * FROM empleados WHERE id = ?");
+    $stmt->execute([$id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
     public function obtenerRolesPorEmpleado($empleado_id) {
     $stmt = $this->conn->prepare("SELECT r.nombre FROM empleado_rol er 
                                   INNER JOIN roles r ON er.rol_id = r.id 
@@ -51,6 +58,42 @@ class Empleado {
         return $empleado_id;
     }
 
-    // Más adelante agregaremos editar, eliminar, obtenerPorId...
+    public function eliminar($id) {
+    // Primero eliminar los roles asociados
+    $stmt = $this->conn->prepare("DELETE FROM empleado_rol WHERE empleado_id = ?");
+    $stmt->execute([$id]);
+
+    // Luego eliminar al empleado
+    $stmt = $this->conn->prepare("DELETE FROM empleados WHERE id = ?");
+    $stmt->execute([$id]);
+    }
+
+    public function actualizar($data) {
+    // Actualizar datos del empleado
+    $stmt = $this->conn->prepare("UPDATE empleados SET 
+        nombre = ?, email = ?, sexo = ?, area_id = ?, boletin = ?, descripcion = ?
+        WHERE id = ?");
+    $stmt->execute([
+        $data['nombre'],
+        $data['email'],
+        $data['sexo'],
+        $data['area_id'],
+        $data['boletin'],
+        $data['descripcion'],
+        $data['id']
+    ]);
+
+    // Eliminar roles actuales
+    $stmt = $this->conn->prepare("DELETE FROM empleado_rol WHERE empleado_id = ?");
+    $stmt->execute([$data['id']]);
+
+    // Insertar nuevos roles
+    foreach ($data['roles'] as $rol_id) {
+        $stmt = $this->conn->prepare("INSERT INTO empleado_rol (empleado_id, rol_id) VALUES (?, ?)");
+        $stmt->execute([$data['id'], $rol_id]);
+        }
+    }
+
+    
 }
 ?>
