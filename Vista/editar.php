@@ -21,6 +21,7 @@ $roles = $conn->query("SELECT * FROM roles")->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>Editar Empleado</title>
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
     <h2>Editar Empleado</h2>
@@ -65,5 +66,6 @@ $roles = $conn->query("SELECT * FROM roles")->fetchAll(PDO::FETCH_ASSOC);
         <br>
         <input type="submit" value="Actualizar">
     </form>
+    <script src="assets/validar.js"></script>
 </body>
 </html>
