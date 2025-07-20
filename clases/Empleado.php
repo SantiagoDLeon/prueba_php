@@ -18,6 +18,15 @@ class Empleado {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function obtenerRolesPorEmpleado($empleado_id) {
+    $stmt = $this->conn->prepare("SELECT r.nombre FROM empleado_rol er 
+                                  INNER JOIN roles r ON er.rol_id = r.id 
+                                  WHERE er.empleado_id = ?");
+    $stmt->execute([$empleado_id]);
+    return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    }
+
+
     public function crear($data) {
         $stmt = $this->conn->prepare("INSERT INTO empleados 
             (nombre, email, sexo, area_id, boletin, descripcion) 

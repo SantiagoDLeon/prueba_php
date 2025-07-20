@@ -3,7 +3,7 @@ class Database {
     private $host = "localhost";
     private $db_name = "prueba_php";
     private $username = "root";
-    private $password = "Maxx45682";
+    private $password = "";
     public $conn;
 
     public function conectar() {
