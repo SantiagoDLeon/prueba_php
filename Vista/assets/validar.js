@@ -53,6 +53,6 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Si todo está bien, se envía el formulario
+        
     });
 });
