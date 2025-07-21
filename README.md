@@ -17,29 +17,6 @@ Aplicación CRUD desarrollada en PHP con MySQL. Permite registrar, listar, edita
 
 ---
 
-## Estructura del proyecto
-
-├── database.sql # Script de creación de base de datos y tablas
-├── README.md # Instrucciones del proyecto
-│
-├── /clases/
-│ ├── Database.php # Conexión PDO
-│ └── Empleado.php # CRUD de empleados
-│
-├── /vista/
-│ ├── crear.php # Formulario de registro
-│ ├── procesar_creacion.php # Lógica para insertar
-│ ├── listar.php # Tabla de empleados
-│ ├── editar.php # Formulario con datos precargados
-│ ├── procesar_edicion.php # Lógica para actualizar
-│ ├── eliminar.php # Eliminar empleados
-│
-│ └── /assets/
-│ ├── validar.js # Validación JS
-│ └── style.css # Estilos
-
----
-
 ## Instalación y configuración
 - tener xampp instalado
 
